@@ -3,6 +3,7 @@ chrome.Cu.importGlobalProperties(['fetch']);
 
 const contextMenu = require('sdk/context-menu');
 const notifications = require('sdk/notifications');
+const prefs = require('sdk/simple-prefs');
 
 contextMenu.Item({
 	contentScript: 'self.on("click", function(node) { self.postMessage(node.href); });',
@@ -38,7 +39,13 @@ function onError(error) {
 }
 
 function sendLink(path, username, password) {
-	return fetch('http://localhost:7800/jsonrpc', {
+	const server = prefs.prefs['path'];
+
+	if (!server) {
+		throw new Error('JSON-RPC path not configured.');
+	}
+
+	return fetch(path, {
 		method: 'POST',
 		body: makeJob(path, username, password)
 	}).catch(() => {

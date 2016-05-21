@@ -8,5 +8,10 @@
 	"engines": {
 		"firefox": ">=39.0a1"
 	},
-	"license": "MIT"
+	"license": "MIT",
+	"preferences": [{
+		"name": "path",
+		"title": "JSON-RPC Path",
+		"type": "string"
+	}]
 }
