@@ -6,7 +6,7 @@
 	"main": "lib/main.js",
 	"author": "Metalnem",
 	"engines": {
-		"firefox": ">=38.0a1"
+		"firefox": ">=39.0a1"
 	},
 	"license": "MIT"
 }
