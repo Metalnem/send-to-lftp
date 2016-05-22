@@ -45,19 +45,26 @@ function sendLink(path, username, password) {
 		throw new Error('JSON-RPC path not configured.');
 	}
 
-	return fetch(path, {
+	const secret = prefs.prefs['token'];
+
+	if (!secret) {
+		throw new Error('RPC secret not configured.');
+	}
+
+	return fetch(server, {
 		method: 'POST',
-		body: makeJob(path, username, password)
+		body: makeJob(path, username, password, secret)
 	}).catch(() => {
 		throw new Error('Error sending link to LFTP.');
 	});
 }
 
-function makeJob(path, username, password) {
+function makeJob(path, username, password, secret) {
 	const job = {
 		'path': path,
 		'username': username,
-		'password': password
+		'password': password,
+		'secret': secret
 	};
 
 	return JSON.stringify(job);
