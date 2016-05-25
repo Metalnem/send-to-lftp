@@ -53,10 +53,12 @@ function onResponse(path, response) {
 	});
 }
 
-function onError(error) {
+function onError(error = 'Unknown server error.') {
+	const message = error.message.endsWith('.') ? error.message : error.message + '.';
+
 	notifications.notify({
 		title: 'Error',
-		text: error.message,
+		text: message,
 		iconURL: './error-64.png'
 	});
 }
