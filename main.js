@@ -53,7 +53,7 @@ function onResponse(path, response) {
 	});
 }
 
-function onError(error = 'Unknown server error.') {
+function onError(error) {
 	const message = error.message.endsWith('.') ? error.message : error.message + '.';
 
 	notifications.notify({
@@ -67,13 +67,13 @@ function sendLink(path, username, password) {
 	const server = prefs.prefs['path'];
 
 	if (!server) {
-		throw new Error('JSON-RPC path not configured.');
+		return Promise.reject(new Error('JSON-RPC path not configured.'));
 	}
 
 	const secret = prefs.prefs['token'];
 
 	if (!secret) {
-		throw new Error('RPC secret not configured.');
+		return Promise.reject(new Error('RPC secret not configured.'));
 	}
 
 	return fetch(server, {
