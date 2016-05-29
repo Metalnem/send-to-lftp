@@ -1,6 +1,6 @@
 # Send to LFTP [![Code Climate](https://codeclimate.com/github/Metalnem/send-to-lftp/badges/gpa.svg)](https://codeclimate.com/github/Metalnem/send-to-lftp) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/metalnem/send-to-lftp/master/LICENSE)
 
-This Firefox extension captures FTP download links and sends them to LFTP server, which is JSON RPC server for [LFTP](https://lftp.yar.ru/). It can download single files and mirror directories. You can download it [here](https://github.com/Metalnem/lftp-server). LFTP can be downloaded with your favorite package manager.
+This Firefox extension captures FTP download links and sends them to [LFTP server](https://github.com/Metalnem/lftp-server). You can download it [here](https://addons.mozilla.org/en-US/firefox/addon/send-to-lftp/).
 
 ## Usage
 
