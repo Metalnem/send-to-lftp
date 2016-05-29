@@ -4,14 +4,19 @@ chrome.Cu.importGlobalProperties(['fetch']);
 const contextMenu = require('sdk/context-menu');
 const notifications = require('sdk/notifications');
 const panels = require('sdk/panel');
+const passwords = require('sdk/passwords');
 const prefs = require('sdk/simple-prefs');
 
 contextMenu.Item({
 	contentScript: 'self.on("click", function(node) { self.postMessage(node.href); });',
 	context: contextMenu.URLContext('ftp://*'),
 	label: 'Send to LFTP',
-	onMessage: onSendLink
+	onMessage: onMenuItemClick
 });
+
+function onMenuItemClick(path) {
+	return getSavedCredentials(path).then(credentials => onSendLink(path, credentials.username, credentials.password));
+}
 
 function onSendLink(path, username, password) {
 	return sendLink(path, username, password)
@@ -30,8 +35,8 @@ function onResponse(path, response) {
 				onHide: () => reject(new Error('Authentication failed.'))
 			});
 
-			panel.port.on('login', data => {
-				resolve(onSendLink(path, data.username, data.password));
+			panel.port.on('login', credentials => {
+				resolve(onSendLink(path, credentials.username, credentials.password));
 				panel.hide();
 			});
 
@@ -60,6 +65,16 @@ function onError(error) {
 		title: 'Error',
 		text: message,
 		iconURL: './error-64.png'
+	});
+}
+
+function getSavedCredentials(url) {
+	return new Promise(resolve => {
+		passwords.search({
+			url: url,
+			onComplete: credentials => resolve(credentials[0] || {}),
+			onError: () => resolve({})
+		});
 	});
 }
 
