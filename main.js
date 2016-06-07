@@ -9,7 +9,7 @@ const prefs = require('sdk/simple-prefs');
 
 contextMenu.Item({
 	contentScript: 'self.on("click", function(node) { self.postMessage(node.href); });',
-	context: contextMenu.URLContext('ftp://*'),
+	context: contextMenu.URLContext('*'),
 	label: 'Send to LFTP',
 	onMessage: onMenuItemClick
 });
