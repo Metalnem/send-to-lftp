@@ -1,7 +1,7 @@
 {
 	"title": "Send to LFTP",
 	"name": "lftp-rpc",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"description": "This extension captures FTP download links and sends them to LFTP server.",
 	"main": "main.js",
 	"author": "Metalnem",
