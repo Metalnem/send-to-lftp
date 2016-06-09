@@ -1,10 +1,10 @@
 # Send to LFTP [![Code Climate](https://codeclimate.com/github/Metalnem/send-to-lftp/badges/gpa.svg)](https://codeclimate.com/github/Metalnem/send-to-lftp) [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/metalnem/send-to-lftp/master/LICENSE)
 
-This Firefox extension captures FTP download links and sends them to [LFTP server](https://github.com/Metalnem/lftp-server). You can download it [here](https://addons.mozilla.org/en-US/firefox/addon/send-to-lftp/).
+This Firefox extension captures HTTP and FTP download links and sends them to [LFTP server](https://github.com/Metalnem/lftp-server). You can download it [here](https://addons.mozilla.org/en-US/firefox/addon/send-to-lftp/).
 
 ## Usage
 
-Right click the link that you want to download, and select "Send to LFTP" option. If the link requires FTP authentication, you will be presented with the popup where you can enter your credentials. Warning: because your FTP credentials are sent in plaintext across the network, it is **strongly recommended** that you run your LFTP server behind TLS termination proxy (like nginx or HAProxy).
+Right click the link that you want to download, and select "Send to LFTP" option. If the link requires authentication, you will be presented with the popup where you can enter your credentials. Warning: because your credentials are sent in plaintext across the network, it is **strongly recommended** that you run your LFTP server behind TLS termination proxy (like nginx or HAProxy).
 
 ## Client Configuration
 
